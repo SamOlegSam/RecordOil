@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Doljnost
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование должности</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdDolj" />
+
+    <label>Наименование</label>
+    <input type="text" class="form-control btn-block" id="NaimenovanieDoljEdit" value="@Model.Naimenovanie" />
+
+    <input type="hidden" class="form-control btn-block" id="UserDoljEdit" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateDoljEdit" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="DoljEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
+

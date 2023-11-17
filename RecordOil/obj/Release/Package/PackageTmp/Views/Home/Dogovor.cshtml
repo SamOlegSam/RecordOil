@@ -1,0 +1,97 @@
+﻿@model IEnumerable<RecordOil.Models.Dogovory>
+
+<div id="ServicesModal" class="modal fade" style="margin-left:auto; margin-right:auto;">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'style="width:1200px; margin-left:-200px;">
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Договоры</h3>
+
+<p>
+    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="AddDogovor(0)">Добавить</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Номер договора
+        </th>
+
+        <th>
+            Дата договора
+        </th>
+
+        <th>
+            Организация
+        </th>
+        <th>
+
+            Примечание
+        </th>
+
+        <th>
+            Созд./Изм.
+        </th>
+
+        <th>
+            Дата создания
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td id="NumberDog">
+        @Html.DisplayFor(modelItem => item.NumberDog)
+    </td>
+    <td id="DateDog">
+        @Html.DisplayFor(modelItem => item.DateDog)
+    </td>
+    <td id="Organization">
+        @Html.DisplayFor(modelItem => item.Organization.Name)
+    </td>
+    <td id="Primech">
+        @Html.DisplayFor(modelItem => item.Primech)
+    </td>
+    <td id="UserModific">
+        @Html.DisplayFor(modelItem => item.UserModific)
+    </td>
+    <td id="DateModofic">
+        @Html.DisplayFor(modelItem => item.DateModific)
+    </td>
+    <td>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="DogovorEdit(@item.IdDog)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteDogovor(@item.IdDog)"> <i class="mdi mdi-delete"></i>Удалить</button>
+    </td>
+</tr>
+    }
+
+</table>

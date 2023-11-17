@@ -1,0 +1,143 @@
+﻿@model IEnumerable<RecordOil.Models.TableZay>
+
+@{
+    int u = 0;
+    decimal? SM = 0;
+    decimal? SMT = 0;
+    decimal? ost = 0;
+    decimal? ostSum = 0;
+
+    var res = Model
+.GroupBy(r => new { r.Nefteproduct.Naimenovanie, r.Sklad.Organization.Name, r.Nefteproduct.P }).OrderBy(t => t.Key.Naimenovanie)
+.Select(gr => new { OilProduct = gr.Key.Naimenovanie, Filial = gr.Key.Name, Sum = gr.Sum(i => i.Massa), gr.Key.P }).GroupBy(j => j.OilProduct);
+}
+
+<table class="table" id="ListT">
+    <tr>
+        <th>
+            Нефтепродукт
+        </th>
+        <th>
+            Филиал
+        </th>
+        <th>
+            Остаток на ,м<sup><small>3</small></sup>.
+        </th>
+        <th>
+            Потребность,м<sup><small>3</small></sup>.
+        </th>
+        <th>
+            Потребность,тонн.
+        </th>
+        <th>
+            Фактическая доставка
+        </th>
+        <th>
+            Наличие на складах
+        </th>
+        <th>
+            Планируемый объем к закупке
+        </th>
+    </tr>
+
+    @foreach (var company in res)
+    {        
+            SM = 0;
+            SMT = 0;
+            ost = 0;
+            ostSum = 0;
+       
+        <tr>
+            <td>
+                <b> @company.Key</b>
+            </td>
+        </tr>
+        foreach (var y in company)
+        {
+            u++;
+            SM =  SM+ y.Sum;
+            SMT =  SMT + y.Sum / y.P;
+
+            foreach (var t in ViewBag.tabZays)
+            {
+                if(t.NeftZay == company.Key && t.Prich == y.Filial)
+                {
+                    ost = t.Massa;
+                }
+
+            }
+            ostSum = ostSum + ost;
+            <tr>
+                <td>
+                    <input type="hidden" class="form-control btn-block" id="IDneftTotal_@u" value="@company.Key"/> 
+                </td>
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="IDfilialTotal_@u" value="@y.Filial" />  
+                </td>
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="OstTotal_@u" value="@ost" /> 
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="PotrebTotal_@u" value="@y.Sum" /> 
+                </td>
+                <td>
+                   <input type="text" class="form-control btn-block" id="PotrebTonnTotal_@u" value="@Math.Round(Convert.ToDouble(SM / y.P), 0)" /> 
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="DostavkaTotal_@u" />
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="NalSkladITOG_@u" />
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="PlanVITOG_@u" />
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <b>ИТОГО:</b>
+            </td>
+            <td>
+            </td>
+            <td>
+                <b>@ostSum</b>
+            </td>
+            <td>
+                <b>@SM</b>
+            </td>
+            <td>
+                <b>@Math.Round(Convert.ToDouble(SMT), 0)</b>
+            </td>
+            <td>
+                <input type="text" class="form-control btn-block" id="DostITOG_@u" />
+            </td>
+            <td>
+                <input type="text" class="form-control btn-block" id="NalSkladITO_@u" />
+            </td>
+            <td>
+                <input type="text" class="form-control btn-block" id="PlanVITO_@u" />
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="ZayTotalSave(0)">Записать заявку</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+<hr>
+<script>
+    document.addEventListener('input', e => {
+        var pref = e.target.id.substring(10);
+        var Massa_ = $('#' + e.target.id).val();
+        var P_ = $('#NeftP_' + pref).val();
+        var MassaT_ = parseFloat(Massa_) / parseFloat(P_);
+
+        console.log(MassaT_.toFixed(3));
+        $('#MassaPlanT_' + pref).val(MassaT_.toFixed(3));
+    })
+</script>
+

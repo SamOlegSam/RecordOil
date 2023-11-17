@@ -1,0 +1,299 @@
+﻿@model IEnumerable<RecordOil.Models.OstatSklad>
+
+<style>
+    .loader {
+        overflow: hidden;
+        font-size: 5px;
+        margin: 50px auto;
+        text-indent: -9999em;
+        width: 11em;
+        height: 11em;
+        border-radius: 50%;
+        background: #4682B4;
+        background: -moz-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -webkit-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -o-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -ms-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: linear-gradient(to right, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        position: relative;
+        -webkit-animation: load3 1.4s infinite linear;
+        animation: load3 1.4s infinite linear;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+        .loader:before {
+            width: 50%;
+            height: 50%;
+            background: #4682B4;
+            border-radius: 100% 0 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+        }
+
+        .loader:after {
+            background: white;
+            width: 75%;
+            height: 75%;
+            border-radius: 50%;
+            content: '';
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+    @@-webkit-keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<div id="ServicesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Остатки нефтепродуктов ЛПДС "Мозырь"</h3>
+
+<input type="hidden" class="form-control btn-block" id="IDF" value="2" />
+
+<table>
+    <tr>
+        <td>
+            <p>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="AddOstatki(0)"><i class="mdi mdi-library-plus"></i> Ввести остатки</button>
+            </p>
+        </td>
+
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                с
+            </p>
+        </td>
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                <input type="date" class="form-control btn-block" id="S" style="width:150px;" />
+                <script>
+                    window.addEventListener('load',
+                        function (e) {
+                            var d = new Date();
+                            var day = d.getDate(); if (day < 10) day = '0' + day;
+                            var month = d.getMonth() + 1; if (month < 10) month = '0' + month;
+                            var year = d.getFullYear();
+                            document.getElementById("S").value = year + "-" + month + "-" + "01";
+                        }, false);
+                </script>
+            </p>
+        </td>
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                по
+            </p>
+        </td>
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                <input type="date" class="form-control btn-block" id="Po" style="width:150px;" />
+                @*<script>
+                                var D = new Date();
+                                D.setMonth(D.getMonth() + 1);
+                                var month = D.getMonth() + 1; if (month < 10) month = '0' + month;
+                                var year = D.getFullYear();
+                                document.getElementById("DatePlan").value = year + "-" + month;
+                                //document.getElementById("DatePlan").value = year + "-" + month + "-" + "01";
+                    </script>*@
+                <script>
+                    var d = new Date();
+                    var day = d.getDate(); if (day < 10) day = '0' + day;
+                    var month = d.getMonth() + 1; if (month < 10) month = '0' + month;
+                    var year = d.getFullYear();
+                    document.getElementById("Po").value = year + "-" + month + "-" + day;
+                </script>
+            </p>
+        </td>
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="GetOstatTab(IDF)"><i class="mdi mdi-library-plus"></i> Вывести</button>
+            </p>
+        </td>
+        <td>
+            &nbsp;&nbsp;
+        </td>
+        <td>
+            <p>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="ReportTEST(IDF)"><i class="mdi mdi-library-plus"></i> отчёт(.docx)</button>
+            </p>
+        </td>
+    </tr>
+</table>
+
+<center>
+    <div class="loader" id="loadImg" style="display:none;">
+    </div>
+</center>
+
+<div id="TabOstatki">
+    <table class="table">
+        <tr>
+            <th>
+                Дата
+            </th>
+
+            <th>
+                Склад
+            </th>
+
+            <th>
+                Нефтепродукт
+            </th>
+
+            <th>
+                Объем, м<sup><small>3</small></sup>
+            </th>
+            <th>
+                Масса, т.
+            </th>
+            <th>
+                Дата ввода
+            </th>
+
+            <th>
+                Созд./Изм.
+            </th>
+
+            <th>
+                Дата создания
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Convert.ToDateTime(item.Date).ToString("d")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sklad.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nefteproduct.Naimenovanie)
+        </td>
+        <td>
+            @Math.Round(Convert.ToDouble(item.Massa), 0)
+        </td>
+        <td>
+            @Math.Round(Convert.ToDouble(item.Massa * item.Nefteproduct.P), 0)
+        </td>
+        <td>
+            @Convert.ToDateTime(item.Date).ToString("d")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserModific)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModific)
+        </td>
+
+        <td>
+            <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="OstatkiEdit(@item.IdOstSklad)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+            <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteOstatki(@item.IdOstSklad)"> <i class="mdi mdi-delete"></i>Удалить</button>
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    window.addEventListener('load',
+        function (e) {
+            document.getElementById("S").max = document.getElementById("Po").value;
+            document.getElementById("Po").min = document.getElementById("S").value;
+        }, false);
+
+    window.addEventListener('change',
+        function (e) {
+            document.getElementById("S").max = document.getElementById("Po").value;
+            document.getElementById("Po").min = document.getElementById("S").value;
+        }, false);
+</script>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModal').modal('hide');
+        }
+    });
+</script>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModalDelete').modal('hide');
+        }
+    });
+</script>

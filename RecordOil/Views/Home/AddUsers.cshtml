@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Users
+<div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Добавление пользователя</b></h5>
+</div>
+<div class="modal-body">
+
+    <label>Фамилия</label>
+    <input type="text" class="form-control btn-block" id="LastName" />
+
+    <label>Имя</label>
+    <input type="text" class="form-control btn-block" id="FirstName" />
+
+    <label>Отчество</label>
+    <input type="text" class="form-control btn-block" id="MiddleName" />
+
+    <label>Филиал</label>
+    @Html.DropDownList("Name", ViewBag.FilUs as SelectList, "Выберите филиал", new { @class = "form-control btn-block", id = "idFil" })
+
+    <label>Должность</label>
+    @Html.DropDownList("Name", ViewBag.DoljUs as SelectList, "Выберите должность", new { @class = "form-control btn-block", id = "idDolj" })
+
+    <label>Телефон</label>
+    <input type="text" class="form-control btn-block" id="PhoneU" />
+
+    <input type="hidden" class="form-control btn-block" id="UserUs" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateUs" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-info" style="min-width:100px" onclick="UsersSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+

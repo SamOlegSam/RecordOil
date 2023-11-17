@@ -1,0 +1,105 @@
+﻿@model IEnumerable<RecordOil.Models.ZayavkaDelete>
+
+<div id="ServicesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Удалённые заявки</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Филиал
+        </th>
+
+        <th>
+            Дата
+        </th>
+
+        <th>
+            Номер
+        </th>
+
+        <th>
+            Пландата
+        </th>
+
+        <th>
+            Создал
+        </th>
+
+        <th>
+            Дата созд.
+        </th>
+               
+        <th>
+            Удалил
+        </th>
+        <th>
+            Дата удаления
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization.Name)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.Date).ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.PlanDate).ToString("Y")
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSozd)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DateSozd).ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDelete)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DateDelete).ToString("d")
+            </td>
+            <td>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="VostZay(@item.ID)"> <i class="mdi mdi-settings"></i>Восстановить</button>
+
+            </td>
+        </tr>
+    }
+
+</table>

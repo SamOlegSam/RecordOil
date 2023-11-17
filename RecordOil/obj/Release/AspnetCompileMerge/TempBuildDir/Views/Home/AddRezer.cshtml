@@ -1,0 +1,28 @@
+﻿@model RecordOil.Models.Rezervuary
+<div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Добавление резервуара</b></h5>
+</div>
+<div class="modal-body">
+
+    <label>Наименование</label>
+    <input type="text" class="form-control btn-block" id="NaimenovanieRez" />
+
+    <label>Объем полезный</label>
+    <input type="text" class="form-control btn-block" id="VpolRez" />
+
+    <label>Объем итоговый</label>
+    <input type="text" class="form-control btn-block" id="VItogRez" />
+
+    <label>Филиал</label>
+    @Html.DropDownList("Name", ViewBag.FilRez as SelectList, "Выберите филиал", new { @class = "form-control btn-block", id = "idFilRez" })
+        
+    <input type="hidden" class="form-control btn-block" id="UserRez" value="@System.Security.Principal.WindowsIdentity.GetCurrent().Name.Trim()" />
+    <input type="hidden" class="form-control btn-block" id="DateRez" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-info" style="min-width:100px" onclick="RezerSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+

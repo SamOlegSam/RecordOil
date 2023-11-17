@@ -1,0 +1,118 @@
+﻿@model IEnumerable<RecordOil.Models.OstatSklad>
+
+<div id="ServicesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Остатки нефтепродуктов на складах</h3>
+
+<p>
+    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="AddOststki(0)"><i class="mdi mdi-library-plus"></i> Ввести остатки</button>
+</p>
+<div id="TabOstatki">
+    <table class="table">
+        <tr>
+            <th>
+                Дата
+            </th>
+
+            <th>
+                Склад
+            </th>
+
+            <th>
+                Нефтепродукт
+            </th>
+
+            <th>
+                Масса
+            </th>
+
+            <th>
+                Примечание
+            </th>
+
+            <th>
+                Созд./Изм.
+            </th>
+
+            <th>
+                Дата создания
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Convert.ToDateTime(item.Date).ToString("d")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sklad.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nefteproduct.Naimenovanie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Massa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Primech)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserModific)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.DateModific).ToString("d")
+                </td>
+
+                <td>
+                    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="OstatkiEdit(@item.IdOstSklad)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+                    <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteOstatki(@item.IdOstSklad)"> <i class="mdi mdi-delete"></i>Удалить</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script>
+    window.addEventListener('load',
+        function (e) {
+            document.getElementById("S").max = document.getElementById("Po").value;
+            document.getElementById("Po").min = document.getElementById("S").value;
+        }, false);
+
+    window.addEventListener('change',
+        function (e) {
+            document.getElementById("S").max = document.getElementById("Po").value;
+            document.getElementById("Po").min = document.getElementById("S").value;
+        }, false);
+</script>

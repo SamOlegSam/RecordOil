@@ -1,0 +1,295 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Zayavka
+
+<div id="ServicesModal3" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent3'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete3" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent3'>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование заявки</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdZay" />
+
+    <div class="modal-body">
+        <input type="hidden" class="form-control btn-block" id="UserZayE" value="@User.Identity.GetUserName()" />
+        <input type="hidden" class="form-control btn-block" id="DateZayE" value="@DateTime.Now" />
+    </div>
+
+    <center>
+        <table style="width:1150px;">
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td colspan="2">
+                    <center><label>Номер</label></center>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Дата</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Филиал</label>
+                </td>
+                <td colspan="2">
+                    <label>Согласование</label>
+                </td>
+
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>План дата</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="PrefZE" style="width:100px;" value="@Model.Organization.Prefix" />
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="NumberZE" style="width:50px;" value="@Model.NumberSch" />
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="date" class="form-control btn-block" id="DateZE" style="width:150px;" />
+                    @*<script>
+                var getCurrentDay = new Date();
+                var year = getCurrentDay.getFullYear();
+                var month = getCurrentDay.getMonth();
+                var day = getCurrentDay.getDate();
+                var value1 = year + "-" + month + "-" + day;
+
+                document.getElementById("DateZE").value = value1;
+            </script>*@
+                    <script>
+                        var datp = document.getElementById("PoZ").value;
+                        document.getElementById("DateZE").value = datp;
+                    </script>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    @ViewBag.ZayE.Organization.Name
+                </td>
+                <td>
+                    <label>@ViewBag.ZayE.UserSoglas</label>
+                </td>
+                <td>
+                    @if (ViewBag.ZayE.DateSoglas != null)
+                    {
+                        <label>@ViewBag.ZayE.DateSoglas.ToString("d")</label>
+                    }
+                    else
+                    {
+                        <label>не согласована</label>
+                    }
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    @ViewBag.ZayE.DatePlan.ToString("Y")
+                </td>
+
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <table style="width:1150px;" id="tabtab">
+
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label></label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Склад</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Нефтепродукт</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Остаток,м <sup><small>3</small></sup>, (тонн)</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Дата остатка</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Потребность,м<sup><small>3</small></sup>.</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Потребность, тонн</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+            @{
+                int u = 0;
+            }
+            @foreach (var item in ViewBag.ListTZ)
+            {
+                u++;
+                decimal OSTL = 0;
+                DateTime? datost = null;
+
+
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="hidden" readonly class="form-control btn-block" id="IdTZ_@u" style="width:150px;" value="@item.IdTable" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @item.Sklad.Name
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+
+                    <td>
+                        @(item.Nefteproduct.Naimenovanie +" (P= " + Math.Round(item.Nefteproduct.P,3) + ")")
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @foreach (var L in ViewBag.LO)
+                        {
+                            if (L.IdSkl == item.IdSklad && L.IdNeftep == item.IdNeftep)
+                            {
+                                OSTL = Math.Round(L.Massa, 0);
+
+                                datost = L.Date;
+                            }
+                        }
+                        @(OSTL + " (" + (Math.Round((OSTL * item.Nefteproduct.P), 0)) + ")")
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @if (datost != null)
+                        {
+                            @Convert.ToDateTime(datost).ToString("d")
+                        }
+                        else
+                        {
+                            datost = null;
+                        }
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="MassaZayE_@u" style="width:150px;" value="@Math.Round(item.Massa,0)" onkeyup="this.value = this.value.replace(/[^(0-9)()]/,'');" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @(Math.Round((item.Massa * item.Nefteproduct.P),0))
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="hidden" readonly class="form-control btn-block" id="NeftZayE_@u" style="width:150px;" value="@item.Nefteproduct.Naimenovanie" />
+                    </td>
+
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+            }
+        </table>
+    </center>
+
+
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="ZayavkaTotalsEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="PrintZayWord(0)">Печать докладной записки</button>
+    @if (ViewBag.ZayE.UserSoglas == null)
+    {
+        <button type="submit" class="btn btn-default" style="min-width:100px" onclick="SoglasZayT(0)">Согласовать заявку</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-default" style="min-width:100px" onclick="SoglasZayT(0)">Отмена согласования</button>
+    }
+</div>
+
+
+
+
+
+
+
+
+

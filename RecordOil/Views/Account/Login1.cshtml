@@ -1,0 +1,38 @@
+﻿@model RecordOil.Models.LoginModel
+<div style="text-align:center" >
+    <h4>Для входа необходимо авторизоваться</h4>
+    <table align="center">
+        <tr>
+            <td>
+                <label>Имя пользователя:</label>
+            </td>
+
+            <td>
+                <input type="text" class="form-control btn-block" id="Login" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <label>Пароль:</label>
+            </td>
+
+            <td>
+                <input type="text" class="form-control btn-block" id="Password" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><label style="visibility:hidden; color:red;">Введенные имя пользователя и пароль не совпадают!</label>  </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-info" style="min-width:100px" onclick="Enter(0)">ВОЙТИ</button>
+            </td>
+        </tr>
+        </table>
+                     
+    </div>

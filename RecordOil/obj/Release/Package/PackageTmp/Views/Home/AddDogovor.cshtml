@@ -1,0 +1,160 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Dogovory
+<div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Добавление договора</b></h5>
+</div>
+<div class="modal-body">
+    <input type="hidden" class="form-control btn-block" id="UserDog" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateDog" value="@DateTime.Now" />
+</div>
+
+<center>
+    <table style="width:1198px;">
+        <tr>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>Номер договора</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>Дата договора</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>C</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>По</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>Организация</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>Примечание</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" class="form-control btn-block" id="NumberDog" style="width:150px;" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <input type="date" class="form-control btn-block" id="DateDogM" style="width:150px;" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <input type="date" class="form-control btn-block" id="S" style="width:150px;" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <input type="date" class="form-control btn-block" id="Po" style="width:150px;" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                @Html.DropDownList("Name", ViewBag.FilOrg as SelectList, "Выберите филиал", new { @class = "form-control btn-block", id = "OrganizDog" })
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <input type="text" class="form-control btn-block" id="PrimDog" style="width:200px;" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-info" style="min-width:100px" onclick="DogovorSave(0)">Заполнить</button>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+        </tr>
+    </table>
+</center>
+<div id="tabdog">
+
+</div>
+

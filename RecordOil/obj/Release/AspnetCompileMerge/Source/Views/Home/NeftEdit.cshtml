@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Nefteproduct
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование нефтепродукта</b></h5>
+</div>
+
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdNeft" />
+
+    <label>Наименование</label>
+    <input type="text" class="form-control btn-block" id="NaimenovanieNeftEdit" value="@Model.Naimenovanie" />
+
+    <label>Плотность, т/ м<sup><small>3</small></sup></label>
+    <input type="text" class="form-control btn-block" id="PNeftEdit" value="@Model.P" onkeyup="this.value = this.value.replace(/[^(0-9)(,)]/,'');"/>
+
+    <label>Примечание</label>
+    <input type="text" class="form-control btn-block" id="PrimNeftEdit" value="@Model.Primech" />
+
+    <hr>
+    <table>
+        @if (Model.PriznakIsp == 1)
+        {
+            <tr style="background-color:white">
+                <td>
+                    <input type="checkbox" id="rules" class="checkbox" checked>
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <label>  Нефтепродукт используется в расчетах</label>
+                </td>
+            </tr>
+
+        }
+        else
+        {
+            <tr style="background-color:white">
+                <td>
+                    <input type="checkbox" id="rules" class="checkbox">
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <label>  Нефтепродукт используется в расчетах</label>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <input type="hidden" class="form-control btn-block" id="UserNeftEdit" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateNeftEdit" value="@DateTime.Now" />
+</div>
+
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="NeftEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
+

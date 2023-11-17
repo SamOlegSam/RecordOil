@@ -1,0 +1,87 @@
+﻿@model IEnumerable<RecordOil.Models.Zayavka>
+
+<table class="table">
+    <tr>
+        <th>
+            Филиал
+        </th>
+
+        <th>
+            Дата
+        </th>
+
+        <th >
+            <center>Номер</center>
+        </th>
+
+        <th>
+            Плановый месяц
+        </th>
+
+        <th>
+            Созд./ Изм.
+        </th>
+
+        <th>
+            Дата создания
+        </th>
+
+        <th colspan="2">
+            Согласование
+        </th>
+
+        <th style="width:230px;">
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td id="DateZay">
+        @Html.DisplayFor(modelItem => item.Organization.Name)
+    </td>
+    <td id="Organization">
+
+        @Convert.ToDateTime(item.DateZay).ToString("d")
+    </td>
+
+    <td id="Organization">
+        @item.Organization.Prefix @item.NumberSch
+    </td>
+
+    <td id="Organization">
+        <input type="text" readonly class="form-control btn-block" id="DateP" style="width:150px;" value="@Convert.ToDateTime(item.DatePlan).ToString("Y")" />
+    </td>
+
+    <td id="UserModific">
+        @Html.DisplayFor(modelItem => item.UserModific)
+    </td>
+
+    <td id="DateModofic">
+        @Convert.ToDateTime(item.DateModific).ToString("d")
+    </td>
+    <td id="DateModofic">
+        @if (item.DateSoglas != null)
+        {
+            @Convert.ToDateTime(item.DateSoglas).ToString("d") @item.UserSoglas
+        }
+        else
+        {
+
+        }
+
+    </td>
+    <td id="DateModofic">
+        @item.UserSoglas
+    </td>
+    <td>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="ZayavkaTotalsEdit(@item.IdZay)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteZayavka(@item.IdZay)"> <i class="mdi mdi-delete"></i>Удалить</button>
+    </td>
+</tr>
+    }
+
+</table>
+
+

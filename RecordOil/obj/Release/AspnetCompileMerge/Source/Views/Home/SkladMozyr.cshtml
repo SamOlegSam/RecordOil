@@ -1,0 +1,104 @@
+﻿@model IEnumerable<RecordOil.Models.Sklad>
+
+<div id="ServicesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Склады</h3>
+
+<p>
+    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="AddSkladMozyr(0)"><i class="mdi mdi-library-plus"></i> Добавить</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Название
+        </th>
+
+        <th>
+            Филиал
+        </th>
+
+        <th>
+            Примечание
+        </th>
+
+        <th>
+            Созд./Изм.
+        </th>
+
+        <th>
+            Дата создания
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Organization.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Primechanie)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserModif)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateModif)
+    </td>
+
+    <td>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="SkladEdit(@item.IdSklad)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteSklad(@item.IdSklad)"> <i class="mdi mdi-delete"></i>Удалить</button>
+    </td>
+</tr>
+    }
+
+</table>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModal').modal('hide');
+        }
+    });
+</script>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModalDelete').modal('hide');
+        }
+    });
+</script>

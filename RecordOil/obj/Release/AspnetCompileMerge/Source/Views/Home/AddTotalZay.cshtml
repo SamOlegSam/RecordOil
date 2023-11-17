@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Zayavka
+<html>
+<head>
+
+    <script language="JavaScript">
+        var registrationList = @(Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.NeftList)));
+        var u = 1;
+        function addR() {
+            u = u + 1;
+            var strSelectList = "<option value=\"Выберите нефтепродукт\">Выберите нефтепродукт</option>";
+            for (var i = 0; i < registrationList.length; i++)
+            {
+                strSelectList = strSelectList + " + " + "<option value=" + registrationList[i].Text + ">" + registrationList[i].Text + "</option > "
+            }
+
+            var nodet = document.createElement('tr');
+            var node1 = document.createElement('td');
+            var node2 = document.createElement('td');
+            var node3 = document.createElement('td');
+            var node4 = document.createElement('td');
+            var node5 = document.createElement('td');
+            var node6 = document.createElement('td');
+            var node7 = document.createElement('td');
+            var node8 = document.createElement('td');
+            var node9 = document.createElement('td');
+            var node10 = document.createElement('td');
+            var node11 = document.createElement('td');
+
+            node1.innerHTML = "";
+            node2.innerHTML = "<input type='text' class=\"form-control btn-block\" id=\"Numer_" + u +"\" style=\"width: 100px;\" value =" + u +">";
+            node3.innerHTML = "";
+
+            node5.innerHTML = "";
+            node6.innerHTML = "<input type=\"text\" class=\"form-control btn-block\" id=\"Massa_" + u +"\" style=\"width: 150px;\" onkeyup=\"this.value = this.value.replace(/[^(0-9)(,)]/, '');\">";
+            node7.innerHTML = "";
+            node8.innerHTML = "<input type=\"text\" class=\"form-control btn-block\" id=\"Plan_" + u +"\" style=\"width: 150px;\" />";
+            node9.innerHTML = "";
+            node10.innerHTML = "<input type=\"text\" class=\"form-control btn-block\" id=\"Prich_" + u +"\" style=\"width: 150px;\" />";
+            node11.innerHTML = "";
+            document.getElementById('tab2').appendChild(nodet);
+            nodet.appendChild(node1);
+            nodet.appendChild(node2);
+            nodet.appendChild(node3);
+            nodet.appendChild(node4);
+            nodet.appendChild(node5);
+            nodet.appendChild(node6);
+            nodet.appendChild(node7);
+            nodet.appendChild(node8);
+            nodet.appendChild(node9);
+            nodet.appendChild(node10);
+            nodet.appendChild(node11);
+
+            var sel = document.createElement('select');
+            sel.className = 'form-control btn-block';
+            sel.id = "NeftZay_" + u;
+            sel.innerHTML = strSelectList;
+            node4.appendChild(sel);
+            nodet.appendChild(node12);
+
+        }
+    </script>
+
+</head>
+<body>
+    <div id="ServicesModal3" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content" id='ServicesModalContent3'>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="ServicesModalDelete3" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" id='ServicesModalDeleteContent3'>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+        <h5> Добавление сводной заявки</h5>
+    </div>
+
+    <div class="modal-body">
+
+        <input type="hidden" class="form-control btn-block" id="UserTotalModific" value="@User.Identity.GetUserName()" />
+        <input type="hidden" class="form-control btn-block" id="DateTotalModific" value="@DateTime.Now" />
+
+        <center>
+            <table style="width:900px;">
+                <tr style="margin:10px;">
+                    <td>
+                        <label>Номер заявки</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <label>Дата заявки</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+
+                    <td>
+                        <label>Планируема дата</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="NumberZayTotal" style="width:150px;" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="date" class="form-control btn-block" id="DateZayTotal" style="width:150px;" />
+                        <script>
+                            var d = new Date();
+                            var day = d.getDate(); if (day < 10) day = '0' + day;
+                            var month = d.getMonth() + 1; if (month < 10) month = '0' + month;
+                            var year = d.getFullYear();
+                            document.getElementById("DateZayTotal").value = year + "-" + month + "-" + day;
+                        </script>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+
+                    <td>
+                        <input type="month" class="form-control btn-block" id="DatePlanTotal" style="width:150px;" />
+
+                        <script>
+                            var D = new Date();
+                            D.setMonth(D.getMonth() + 1);
+                            var month = D.getMonth() + 1; if (month < 10) month = '0' + month;
+                            var year = D.getFullYear();
+                            document.getElementById("DatePlanTotal").value = year + "-" + month;                            
+                        </script>
+
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <button id="butt1" type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="LetResTotal()"> <i class="mdi mdi-settings"></i>Заполнить заявку</button>
+                    </td>
+
+                </tr>
+            </table>
+        </center>
+        <hr>
+
+        @*-------------------------------Заполнение списка --------------------------------------------*@
+        <div id="ListRezTotal">
+
+        </div>
+        <div id=" LetZayOst">
+            <hr>
+
+        </div>
+        @*--------------------------------------------------------------------------------------------------------*@
+
+        
+    </div>
+</body>
+</html>
+

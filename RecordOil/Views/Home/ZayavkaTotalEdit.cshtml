@@ -1,0 +1,311 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model IEnumerable<RecordOil.Models.TableZayTotal>
+<html>
+<head>
+
+</head>
+<body>
+    <div id="ServicesModal3" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content" id='ServicesModalContent3'>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="ServicesModalDelete3" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" id='ServicesModalDeleteContent3'>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+        <h5> Редактирование докладной записки на нефтепродукты</h5>
+    </div>
+
+    <div class="modal-body">
+
+        <input type="hidden" class="form-control btn-block" id="UserZayModof" value="@User.Identity.GetUserName()" />
+        <input type="hidden" class="form-control btn-block" id="DateZayModif" value="@DateTime.Now" />
+        <input type="hidden" class="form-control btn-block" id="IDF" value="@ViewBag.ZayETotal.id" />
+
+        <center>
+            <table style="width:1150px;">
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td colspan="2">
+                        <center><label>Номер Д/З</label></center>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <label>Дата Д/З</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <label>План дата</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <label>Пользователь</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @ViewBag.prefA
+                    </td>
+                    <td>                        
+                        <input type="text" class="form-control btn-block" id="NumberZED" style="width:50px;" value=" @ViewBag.ZayETotal.NumberTotalInt" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(ViewBag.ZayETotal.DateZayTotal).ToString("d")
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @ViewBag.ZayETotal.DatePlanTotal.ToString("Y")
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        @User.Identity.GetUserName()
+                    </td>
+
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+            </table>
+        </center>
+
+        <hr>
+        @{
+            int u = 0;
+            decimal? SM = 0;
+            decimal? SMT = 0;
+            decimal? ost = 0;
+            decimal? ostSum = 0;
+            decimal? nalichSklad = 0;
+            decimal? planV = 0;
+            decimal? NalSkladHran = 0;
+            decimal? planVV = 0;
+            int IDDOST = 0;
+
+            //    var res = Model
+            //.GroupBy(r => new { r.Nefteproduct.Naimenovanie, r.Organization.Name, r.Nefteproduct.P, r.Oststok, r.Potrebnost, r.DostavkaFact }).OrderBy(t => t.Key.Naimenovanie)
+            //.Select(gr => new { OilProduct = gr.Key.Naimenovanie, Filial = gr.Key.Name, Ostatok = gr.Key.Oststok, Potrebnost = gr.Key.Potrebnost, Dostavka = gr.Key.DostavkaFact, gr.Key.P }).GroupBy(j => j.OilProduct);
+
+            var res = Model.GroupBy(h => h.Nefteproduct.Naimenovanie).ToList();
+
+            var OstatAU = ViewBag.OstatAU;
+            var SpisOst = new List<RecordOil.Models.OstatSklad>();
+            foreach (var item in ViewBag.OstatAU)
+            {
+                SpisOst.Add(item);
+            }
+
+            var SpisOstIT = SpisOst.GroupBy(y => y.Nefteproduct.Naimenovanie).Select(t => new { neftprod = t.Key, summa = t.Sum(i => i.Massa) });
+            }
+
+        <table  id="ListT">
+            <tr>
+                <th>
+                    Нефтепродукт
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Склад
+                </th>
+                <th>
+                    Остаток,тонн.
+                </th>
+                
+                <th>
+                    Потребность,тонн.
+                </th>
+                <th>
+                    Фактическая доставка, тонн
+                </th>
+                <th>
+                    Наличие на складах, тонн
+                </th>
+                <th>
+                    Планируемый объем к закупке, тонн
+                </th>
+            </tr>
+
+            @foreach (var company in res)
+            {
+                SM = 0;
+                SMT = 0;
+                ost = 0;
+                ostSum = 0;
+
+
+                <tr>
+                    <td>
+                        <b> @company.Key</b>
+                    </td>
+                </tr>
+                        foreach (var y in company)
+                        {
+                            u++;
+                            ostSum = ostSum + y.Oststok;
+                            SMT = SMT + y.Potrebnost * y.Nefteproduct.P;
+                            SM = SM + y.Potrebnost;
+                            ost = ost + y.DostavkaFact;
+                            if (y.Sklad.Organization.IdOrg == 14)
+                            {
+                                nalichSklad = y.NalichSkladHran;
+                                planV = y.PlanV;
+                            }
+                            string p = Convert.ToString(y.Nefteproduct.P).Replace(",",".");
+
+                            if (SpisOstIT.FirstOrDefault(qw => qw.neftprod == company.Key) != null)
+                            {
+                                NalSkladHran = SpisOstIT.FirstOrDefault(qw => qw.neftprod == company.Key).summa * y.Nefteproduct.P;
+                            }
+                            else
+                            {
+                                NalSkladHran = 0;
+                            }
+                            if(y.ZayTotal.MassDostTotal.FirstOrDefault(k => k.Nefteproduct.Naimenovanie == company.Key) != null)
+                            {
+                                planVV = y.ZayTotal.MassDostTotal.FirstOrDefault(k => k.Nefteproduct.Naimenovanie == company.Key).Massa;
+                                IDDOST = y.ZayTotal.MassDostTotal.FirstOrDefault(k => k.Nefteproduct.Naimenovanie == company.Key).IdT;
+
+                            }
+                            else
+                            {
+                                planVV = 0;
+                                //IDDOST = y.ZayTotal.MassDostTotal.FirstOrDefault(k => k.Nefteproduct.Naimenovanie == company.Key).IdT;
+                            }
+                    <tr>
+                        <td>
+                            <input type="hidden" class="form-control btn-block" id="IDzapTotal_@u" value="@y.id" />
+                        </td>
+                        <td>
+                            <input type="hidden" class="form-control btn-block" id="IDneftTotal_@u" value="@company.Key" />
+
+                        </td>
+                        <td>
+                            <input type="text" readonly class="form-control btn-block" style="width:230px;" id="IDfilialTotal_@u" value="@y.Sklad.Name" />
+                        </td>
+                        <td>
+                            <input type="text" readonly class="form-control btn-block" id="OstTotal_@u" value="@Math.Round(Convert.ToDouble(y.Oststok),0)" />
+                        </td>
+                        
+                        <td>
+                            <input type="text" readonly class="form-control btn-block" id="PotrebTonnTotal_@u" value="@Math.Round(Convert.ToDouble(y.Potrebnost * y.Nefteproduct.P), 0)" onchange="d(@u, @p)"/>
+                        </td>
+                        <td>
+                            <input tabindex="1" type="text" class="form-control btn-block" name="@company.Key" id="DostavkaTotal_@u" value="@Math.Round(Convert.ToDouble(y.DostavkaFact),0)" />
+                        </td>
+                        <td>
+                            @*<input type="hidden" class="form-control btn-block" id="NalSkladITOG_@u" value="@y.NalichSkladHran"/>*@
+                        </td>
+                        <td>
+                            @*<input type="hidden" class="form-control btn-block" id="PlanVITOG_@u" value="@y.PlanV"/>*@
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <b>ИТОГО:</b>
+                    </td>
+                    <td>
+                        <input type="hidden" class="form-control btn-block" id="IDneftTotalITOGG_@u" value="@company.Key" />
+                    </td>                    
+                    <td>
+                        <input type="hidden" class="form-control btn-block" id="IDT_@u" value="@Math.Round(Convert.ToDouble(IDDOST),0)" /> 
+                    </td>
+                    <td>
+                        <b><input type="text" readonly class="form-control btn-block" id="ITOG1_@u" value="@Math.Round(Convert.ToDouble(ostSum),0)" /></b>
+                    </td>
+                    
+                    <td>
+                        <b><input type="text" readonly class="form-control btn-block" id="ITOG1_@u" value="@Math.Round(Convert.ToDouble(SMT), 0)" /></b>
+                    </td>
+                    <td>
+                        <b><input type="text" readonly class="form-control btn-block" name="@company.Key" id="DostITOG_@u" value="@Math.Round(Convert.ToDouble(ost),0)" /></b>
+                    </td>
+                    <td>
+                        <b><input type="text" readonly class="form-control btn-block" id="NalSkladITOG_@u" value="@Math.Round(Convert.ToDouble(NalSkladHran),0)" /></b>
+                    </td>
+                    <td>
+                        <b><input tabindex="1" type="text" class="form-control btn-block" id="PlanVITOG_@u" value="@Math.Round(Convert.ToDouble(planVV),0)" /></b>
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+        <div class="modal-footer" style="text-align:center">
+            <button type="submit" class="btn btn-default" style="min-width:100px" onclick="ZayavkaTotalEditSave(0)">Сохранить</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+            <button type="submit" class="btn btn-default" style="min-width:100px" onclick="PrintZayTotalWord(0)">Д/З на закупку(.docx)</button>
+            <button type="submit" class="btn btn-default" style="min-width:100px" onclick="PrintZayTotalWordDost(0)">Д/З на доставку(.docx)</button>
+        </div>
+        <hr>
+
+    </div>
+</body>
+</html>
+
+<script>
+    function d(u, p) {
+        var MassT = document.getElementById("PotrebTonnTotal_" + u).value;
+        var str = p * parseFloat(document.getElementById("PotrebTonnTotal_" + u).value);
+        document.getElementById("PotrebTotal_" + u).value = str.toString().replace(".",",");
+        console.log("MassT= " + MassT);
+        console.log("p= " + p);
+        console.log("u= " + u);        
+        console.log("res= " + p * parseFloat(document.getElementById("PotrebTonnTotal_" + u).value));
+    }    
+</script>
+
+<script>
+    $(function d() {
+        ListT.addEventListener('change', function (e) {
+            var pref = e.target.name;
+            console.log("pref = " + pref);
+            var p = document.getElementsByName(pref);
+            var sum = 0;
+            for (var t = 0; t < p.length - 1; t++) {
+                if (document.getElementById(p[t].id).value == "") {
+                    document.getElementById(p[t].id).value = 0;
+                }
+                sum = Number(sum) + Number(document.getElementById(p[t].id).value);
+            }
+
+            console.log("sum= " + sum);
+            p[p.length - 1].value = sum;
+
+        })
+    })
+</script>

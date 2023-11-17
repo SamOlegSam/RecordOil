@@ -1,0 +1,191 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Dogovory
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5> <b>Редактирование договора</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdDog" />
+
+    <div class="modal-body">
+        <input type="hidden" class="form-control btn-block" id="UserDogE" value="@User.Identity.GetUserName()" />
+        <input type="hidden" class="form-control btn-block" id="DateDogE" value="@DateTime.Now" />
+    </div>
+
+    <center>
+        <table style="width:1150px;">
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Номер договора</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Дата договора</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Организация</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Примечание</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="NumberDogE" style="width:150px;" value="@ViewBag.dogE.NumberDog" />
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="DateDogME" style="width:150px;" value="@ViewBag.dogE.DateDog" />
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    @Html.DropDownList("Name", ViewBag.FilOrgE as SelectList, "Выберите филиал", new { @class = "form-control btn-block", id = "OrganizDogE" })
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control btn-block" id="PrimDogE" style="width:200px;" value="@ViewBag.dogE.Primech" />
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <table style="width:1150px;" id="tabtab">
+
+            <tr>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>ID записи</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Месяц</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Нефтепродукт</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Масса</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <label>Примечание</label>
+                </td>
+                <td>
+                    <label>&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+            @{
+                int u = 0;
+            }
+            @foreach (var item in ViewBag.ListTD)
+            {
+                u++;
+                string neft = "";
+                foreach (var i in ViewBag.ListN)
+                {
+                    if (i.IdNeft == item.IdNeft)
+                    {
+                        neft = i.Naimenovanie;
+                    }
+                }
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="form-control btn-block" id="IdTD_@u" style="width:150px;" value="@item.IdTD" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="form-control btn-block" id="DateDogE_@u" style="width:150px;" value="@item.DateMonth.ToString("Y")" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" readonly class="form-control btn-block" id="NeftDogE_@u" style="width:150px;" value="@neft" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="MassaDogE_@u" style="width:150px;" value="@item.Massa" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="PrimechDogE_@u" style="width:150px;" value="@item.Primech" />
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+            }
+        </table>
+    </center>
+
+
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="DogovorEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
+

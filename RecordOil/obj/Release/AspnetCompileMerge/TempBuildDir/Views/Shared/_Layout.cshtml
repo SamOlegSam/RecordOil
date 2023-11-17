@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявки нефтепродуктов филиалов ОАО Гомельтранснефть Дружба</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+
+<body class="grad">
+
+    <style>
+        .grad {
+            background-image: url(/Image/fon7.png);
+            background-repeat: round;
+            padding-top: 10px;
+        }
+    </style>
+
+    @*-----------------------------------------------------------*@
+    <style>
+
+
+        .dws-menu * {
+            margin: 0;
+            padding: 0;
+            min-width: 120px;
+        }
+
+        .dws-menu ul,
+        .dws-menu ol {
+            list-style: none;
+        }
+
+        .dws-menu > ul {
+            display: flex;
+            justify-content: center;
+        }
+
+            .dws-menu > ul li a {
+                display: block;
+                background: #87CEFA;
+                padding: 15px 30px 15px 40px;
+                font-size: 14px;
+                color: #454547;
+                text-decoration: none;
+                /*text-transform: uppercase;*/
+                transition: all 0.3s ease;
+            }
+
+            .dws-menu > ul li {
+                position: relative;
+                border-left: 1px solid #c7c8ca;
+            }
+
+                .dws-menu > ul li:first-child {
+                    border-left: 1px solid #b2b3b5;
+                }
+
+                .dws-menu > ul li:last-child {
+                    border-left: 1px solid #babbbb;
+                }
+
+        .dws-menu li a:hover {
+            background: /*#1E90FF;*/ /*#034e96;*/ #4682B4;
+            color: #ffffff;
+            box-shadow: 1px 5px 10px -5px black;
+            transition: all 0.3s ease;
+        }
+
+        .dws-menu li ul {
+            position: absolute;
+            min-width: 175px;
+            display: none;
+        }
+
+        .dws-menu li > ul li {
+            border: 1px solid #c7c8ca;
+        }
+
+            .dws-menu li > ul li a {
+                padding: 10px;
+                text-transform: none;
+                background: #87CEFA;
+            }
+
+            .dws-menu li > ul li ul {
+                position: absolute;
+                right: -175px;
+                top: 0px;
+            }
+
+        .dws-menu li:hover > ul {
+            display: block;
+        }
+    </style>
+    @*------------------------------------------------------------*@
+
+    <header class="headertable">
+        <nav class="dws-menu">
+            <ul>
+                <li><a href="/Home/Index/">ГЛАВНАЯ</a></li>
+
+                @*------------------------------------------------------------------------------------*@
+                
+            <li>
+                <a href="#">ЗАЯВКИ</a>
+                <ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Kireev"))
+                        {
+                            <li><a href="/Home/ZayavkiAU/">ЗАЯВКИ АУ</a></li>
+                        }
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Gomel"))
+                        {
+                            <li><a href="/Home/ZayavkiGomel/">ЗАЯВКИ НПС ГОМЕЛЬ</a></li>
+                        }
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Mozyr"))
+                        {
+                            <li><a href="/Home/ZayavkiMozyr/">ЗАЯВКИ ЛПДС МОЗЫРЬ</a></li>
+                        }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Pinsk"))
+                        {
+                            <li><a href="/Home/ZayavkiPinsk/">ЗАЯВКИ НПС ПИНСК</a></li>
+                        }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Turov"))
+                        {
+                            <li><a href="/Home/ZayavkiTurov/">ЗАЯВКИ НПС ТУРОВ</a></li>
+                        }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Kobrin"))
+                        {
+                            <li><a href="/Home/ZayavkiKobrin/">ЗАЯВКИ НПС КОБРИН</a></li>
+                        }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("CBPO"))
+                        {
+                            <li><a href="/Home/ZayavkiCBPO/">ЗАЯВКИ ЦБПО</a></li>
+                        }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Novopolock"))
+                        {
+                            <li><a href="/Home/ZayavkiNovopolock/">ЗАЯВКИ НПС НОВОПОЛОЦК</a></li>
+                        }
+                    }
+                </ul>
+            </li>     
+                
+                @*-------------------------------------------------------------------------*@
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Kireev"))
+                    {
+            <li>
+                <a href="">ОННиУК</a>
+                <ul>
+                    <li><a href="/Home/LoginPassword/">Регистрация пользователей</a></li>
+                    <li><a href="/Home/Zayavki/">Заявки филиалов</a></li>
+                    <li><a href="/Home/ZayTotal/">Сводные заявки филиалов</a></li>
+                </ul>
+            </li>
+                    }
+                }
+
+                <li>
+                    <a href="#">КАТАЛОГИ</a>
+                    <ul>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Kireev"))
+                            {
+                        <li><a href="/Home/Organiz/">Организации</a></li>
+                            }
+                        }
+                        
+                        <li>
+                            <a href="#">Склады</a>
+                            <ul>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kireev"))
+                                    {
+                                        <li><a href="/Home/SkladAU/">АУ</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Gomel"))
+                                    {
+                                        <li><a href="/Home/SkladGomel/">НПС "Гомель"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("CBPO"))
+                                    {
+                                        <li><a href="/Home/SkladCBPO/">ЦБПО</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Mozyr"))
+                                    {
+                                        <li><a href="/Home/SkladMozyr/">ЛПДС "Мозырь"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Pinsk"))
+                                    {
+                                        <li><a href="/Home/SkladPinsk/">НПС "Пинск"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Turov"))
+                                    {
+                                        <li><a href="/Home/SkladTurov/">НПС "Туров"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kobrin"))
+                                    {
+                                        <li><a href="/Home/SkladKobrin/">НПС "Кобрин"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Novopolock"))
+                                    {
+                                        <li><a href="/Home/SkladNovopolock/">НПС "Новополоцк"</a></li>
+                                    }
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Остатки</a>
+                            <ul>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kireev"))
+                                    {
+                                        <li><a href="/Home/OstatkiAU/">АУ</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Gomel"))
+                                    {
+                                        <li><a href="/Home/OstatkiGomel/">НПС "Гомель"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("CBPO"))
+                                    {
+                                        <li><a href="/Home/OstatkiCBPO/">ЦБПО</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Mozyr"))
+                                    {
+                                        <li><a href="/Home/OstatkiMozyr/">ЛПДС "Мозырь"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Pinsk"))
+                                    {
+                                        <li><a href="/Home/OstatkiPinsk/">НПС "Пинск"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Turov"))
+                                    {
+                                        <li><a href="/Home/OstatkiTurov/">НПС "Туров"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kobrin"))
+                                    {
+                                        <li><a href="/Home/OstatkiKobrin/">НПС "Кобрин"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Novopolock"))
+                                    {
+                                        <li><a href="/Home/OstatkiNovopolock/">НПС "Новополоцк"</a></li>
+                                    }
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Пользователи</a>
+                            <ul>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kireev"))
+                                    {
+                                        <li><a href="/Home/UsersAU/">АУ</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Gomel"))
+                                    {
+                                        <li><a href="/Home/UsersGomel/">НПС "Гомель"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("CBPO"))
+                                    {
+                                        <li><a href="/Home/UsersCBPO/">ЦБПО</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Mozyr"))
+                                    {
+                                        <li><a href="/Home/UsersMozyr/">ЛПДС "Мозырь"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Pinsk"))
+                                    {
+                                        <li><a href="/Home/UsersPinsk/">НПС "Пинск"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Turov"))
+                                    {
+                                        <li><a href="/Home/UsersTurov/">НПС "Туров"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Kobrin"))
+                                    {
+                                        <li><a href="/Home/UsersKobrin/">НПС "Кобрин"</a></li>
+                                    }
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Novopolock"))
+                                    {
+                                        <li><a href="/Home/UsersNovopolock/">НПС "Новополоцк"</a></li>
+                                    }
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li><a href="/Home/Dolj/">Должности</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Kireev"))
+                            {
+                                <li><a href="/Home/Nefteprod/">Нефтепродукты</a></li>
+                            }
+                        }
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Kireev"))
+                            {
+                                <li><a href="/Home/Dogovor/">Договоры</a></li>
+
+                            }
+                        }
+
+                    </ul>
+                </li>
+                <li><a href="">УТИЛИТЫ</a></li>
+                <li><a onclick="Reference()">СПРАВКА</a></li>
+
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </nav>
+
+    </header>
+    <hr>
+    @*----------------------------------------------------------*@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <center><p>&copy; @DateTime.Now.Year - Заявки нефтепродуктов филиалов</p></center>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/RecordOil.js"></script>
+</body>
+</html>

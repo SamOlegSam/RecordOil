@@ -1,0 +1,112 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@using System.Web.Security;
+@model IEnumerable<RecordOil.Models.Nefteproduct>
+<div class="modal-header" style="text-align: center;background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Ввод остатков</b></h5>
+</div>
+<div class="modal-body" style="text-align:center">
+
+    <table class="table">
+        
+        <tr style="background-color:white; float:left;">
+                        
+            <td>
+                <label>Дата остатков:</label>
+            </td>
+            
+            <td>
+                <input type="date" class="form-control btn-block" id="DPlan" style="width:150px;" />
+                <script>
+                    var datp = document.getElementById("Po").value;
+                    document.getElementById("DPlan").value = datp;
+                    
+                </script>
+            </td>
+        </tr>
+    </table>
+    
+    
+    <table class="table" id="tab1">
+        <tr>
+            <th>
+
+            </th>
+
+            <th>
+                Нефтепродукт
+            </th>
+
+            <th>
+                Объём, м3
+            </th>
+
+            <th>
+                Примечание
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+        @{
+            int u = 0;
+        }
+        @foreach (var i in ViewBag.SkFil)
+        {
+            <tr>
+                <td colspan="5">
+                    <label>@i.Name</label>
+                </td>
+
+            </tr>
+            foreach (var item in Model)
+            {
+                u++;
+                <tr>
+                    <td>
+                        <input type="hidden" readonly class="form-control btn-block" id="IdOst_@u" value="@i.IdSklad" />
+                    </td>
+                    <td>
+                        <input type="text" readonly class="form-control btn-block" id="IdNeftOst_@u" value="@item.Naimenovanie" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="MassOst_@u" onkeyup="this.value = this.value.replace(/[^(0-9)()]/,'');"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control btn-block" id="PrimOst_@u" />
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <hr>
+    <table class="table">
+        
+        <tr style="float:left;">
+            <td>
+                <label>Дата</label>
+            </td>
+            <td>
+                <input type="text" readonly class="form-control btn-block"  id="DMod" value="@DateTime.Now" />
+            </td>
+            <td>
+                <label>&nbsp;&nbsp;</label>
+            </td>
+            <td>
+                <label>Пользователь</label>
+            </td>
+            <td>
+                <input type="text" readonly class="form-control btn-block"  id="UserMod" value="@User.Identity.GetUserName()" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="OstatkiSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>

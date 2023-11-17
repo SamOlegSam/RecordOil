@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RecordOilModelContainer" CdmEntityContainer="RecordOilEntities">
+    <EntitySetMapping Name="Autorize">
+      <EntityTypeMapping TypeName="RecordOilModel.Autorize">
+        <MappingFragment StoreEntitySet="Autorize">
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dogovory">
+      <EntityTypeMapping TypeName="RecordOilModel.Dogovory">
+        <MappingFragment StoreEntitySet="Dogovory">
+          <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+          <ScalarProperty Name="NumberDog" ColumnName="NumberDog" />
+          <ScalarProperty Name="DateDog" ColumnName="DateDog" />
+          <ScalarProperty Name="IdOrg" ColumnName="IdOrg" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doljnost">
+      <EntityTypeMapping TypeName="RecordOilModel.Doljnost">
+        <MappingFragment StoreEntitySet="Doljnost">
+          <ScalarProperty Name="IdDolj" ColumnName="IdDolj" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nefteproduct">
+      <EntityTypeMapping TypeName="RecordOilModel.Nefteproduct">
+        <MappingFragment StoreEntitySet="Nefteproduct">
+          <ScalarProperty Name="IdNeft" ColumnName="IdNeft" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+          <ScalarProperty Name="P" ColumnName="P" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+          <ScalarProperty Name="PriznakIsp" ColumnName="PriznakIsp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organization">
+      <EntityTypeMapping TypeName="RecordOilModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="IdOrg" ColumnName="IdOrg" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Priznak" ColumnName="Priznak" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OstatkiFilial">
+      <EntityTypeMapping TypeName="RecordOilModel.OstatkiFilial">
+        <MappingFragment StoreEntitySet="OstatkiFilial">
+          <ScalarProperty Name="IdOstFil" ColumnName="IdOstFil" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdRez" ColumnName="IdRez" />
+          <ScalarProperty Name="IdNeftep" ColumnName="IdNeftep" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="IdOrg" ColumnName="IdOrg" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OstatSklad">
+      <EntityTypeMapping TypeName="RecordOilModel.OstatSklad">
+        <MappingFragment StoreEntitySet="OstatSklad">
+          <ScalarProperty Name="IdOstSklad" ColumnName="IdOstSklad" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdNeftep" ColumnName="IdNeftep" />
+          <ScalarProperty Name="IdSkl" ColumnName="IdSkl" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezervuary">
+      <EntityTypeMapping TypeName="RecordOilModel.Rezervuary">
+        <MappingFragment StoreEntitySet="Rezervuary">
+          <ScalarProperty Name="IdRez" ColumnName="IdRez" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+          <ScalarProperty Name="Vpolezn" ColumnName="Vpolezn" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Vitog" ColumnName="Vitog" />
+          <ScalarProperty Name="idSklad" ColumnName="idSklad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RecordOilModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="IdR" ColumnName="IdR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sklad">
+      <EntityTypeMapping TypeName="RecordOilModel.Sklad">
+        <MappingFragment StoreEntitySet="Sklad">
+          <ScalarProperty Name="IdSklad" ColumnName="IdSklad" />
+          <ScalarProperty Name="IdOrg" ColumnName="IdOrg" />
+          <ScalarProperty Name="UserModif" ColumnName="UserModif" />
+          <ScalarProperty Name="DateModif" ColumnName="DateModif" />
+          <ScalarProperty Name="Primechanie" ColumnName="Primechanie" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RecordOilModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableDog">
+      <EntityTypeMapping TypeName="RecordOilModel.TableDog">
+        <MappingFragment StoreEntitySet="TableDog">
+          <ScalarProperty Name="IdTD" ColumnName="IdTD" />
+          <ScalarProperty Name="DateMonth" ColumnName="DateMonth" />
+          <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+          <ScalarProperty Name="IdNeft" ColumnName="IdNeft" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableZay">
+      <EntityTypeMapping TypeName="RecordOilModel.TableZay">
+        <MappingFragment StoreEntitySet="TableZay">
+          <ScalarProperty Name="IdTable" ColumnName="IdTable" />
+          <ScalarProperty Name="IdNeftep" ColumnName="IdNeftep" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="PlanJob" ColumnName="PlanJob" />
+          <ScalarProperty Name="Prim" ColumnName="Prim" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="IdZay" ColumnName="IdZay" />
+          <ScalarProperty Name="IdSklad" ColumnName="IdSklad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableZayTotal">
+      <EntityTypeMapping TypeName="RecordOilModel.TableZayTotal">
+        <MappingFragment StoreEntitySet="TableZayTotal">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idZayTotal" ColumnName="idZayTotal" />
+          <ScalarProperty Name="idFilial" ColumnName="idFilial" />
+          <ScalarProperty Name="idNeft" ColumnName="idNeft" />
+          <ScalarProperty Name="Potrebnost" ColumnName="Potrebnost" />
+          <ScalarProperty Name="Oststok" ColumnName="Oststok" />
+          <ScalarProperty Name="DostavkaFact" ColumnName="DostavkaFact" />
+          <ScalarProperty Name="NalichSkladHran" ColumnName="NalichSkladHran" />
+          <ScalarProperty Name="PlanV" ColumnName="PlanV" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="RecordOilModel.UserRoles">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="IdUR" ColumnName="IdUR" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RecordOilModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IdUserrs" ColumnName="IdUserrs" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MidleName" ColumnName="MidleName" />
+          <ScalarProperty Name="idFil" ColumnName="idFil" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="idDolj" ColumnName="idDolj" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Podpisant" ColumnName="Podpisant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zayavka">
+      <EntityTypeMapping TypeName="RecordOilModel.Zayavka">
+        <MappingFragment StoreEntitySet="Zayavka">
+          <ScalarProperty Name="NumberSch" ColumnName="NumberSch" />
+          <ScalarProperty Name="IdZay" ColumnName="IdZay" />
+          <ScalarProperty Name="DateZay" ColumnName="DateZay" />
+          <ScalarProperty Name="DatePlan" ColumnName="DatePlan" />
+          <ScalarProperty Name="IdOrg" ColumnName="IdOrg" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Priznak" ColumnName="Priznak" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="IdSk" ColumnName="IdSk" />
+          <ScalarProperty Name="UserSoglas" ColumnName="UserSoglas" />
+          <ScalarProperty Name="DateSoglas" ColumnName="DateSoglas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZayTotal">
+      <EntityTypeMapping TypeName="RecordOilModel.ZayTotal">
+        <MappingFragment StoreEntitySet="ZayTotal">
+          <ScalarProperty Name="NumberTotalInt" ColumnName="NumberTotalInt" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NumberTotal" ColumnName="NumberTotal" />
+          <ScalarProperty Name="DateZayTotal" ColumnName="DateZayTotal" />
+          <ScalarProperty Name="DatePlanTotal" ColumnName="DatePlanTotal" />
+          <ScalarProperty Name="UserModific" ColumnName="UserModific" />
+          <ScalarProperty Name="DateModific" ColumnName="DateModific" />
+          <ScalarProperty Name="Primech" ColumnName="Primech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище RecordOilModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище RecordOilModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище RecordOilModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище RecordOilModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RecordOilModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище RecordOilModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RecordOilModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище RecordOilModel.sp_renamediagram" />
+    <EntitySetMapping Name="MassDostTotal">
+      <EntityTypeMapping TypeName="RecordOilModel.MassDostTotal">
+        <MappingFragment StoreEntitySet="MassDostTotal">
+          <ScalarProperty Name="IdZayTotal" ColumnName="IdZayTotal" />
+          <ScalarProperty Name="IdNeft" ColumnName="IdNeft" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="IdT" ColumnName="IdT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OstatkiDelete">
+      <EntityTypeMapping TypeName="RecordOilModel.OstatkiDelete">
+        <MappingFragment StoreEntitySet="OstatkiDelete">
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
+          <ScalarProperty Name="UserSozd" ColumnName="UserSozd" />
+          <ScalarProperty Name="DateSozd" ColumnName="DateSozd" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="V" ColumnName="V" />
+          <ScalarProperty Name="Nefteprod" ColumnName="Nefteprod" />
+          <ScalarProperty Name="Sklad" ColumnName="Sklad" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableZayDelete">
+      <EntityTypeMapping TypeName="RecordOilModel.TableZayDelete">
+        <MappingFragment StoreEntitySet="TableZayDelete">
+          <ScalarProperty Name="IdZay" ColumnName="IdZay" />
+          <ScalarProperty Name="IdSklad" ColumnName="IdSklad" />
+          <ScalarProperty Name="Massa" ColumnName="Massa" />
+          <ScalarProperty Name="IDNeft" ColumnName="IDNeft" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZayavkaDelete">
+      <EntityTypeMapping TypeName="RecordOilModel.ZayavkaDelete">
+        <MappingFragment StoreEntitySet="ZayavkaDelete">
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
+          <ScalarProperty Name="UserSozd" ColumnName="UserSozd" />
+          <ScalarProperty Name="DateSozd" ColumnName="DateSozd" />
+          <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Filial" ColumnName="Filial" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

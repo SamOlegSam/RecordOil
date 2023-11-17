@@ -1,0 +1,143 @@
+﻿@model IEnumerable<RecordOil.Models.Users>
+
+<div id="ServicesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Пользователи</h3>
+
+<p>
+    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="AddUsersKobrin(0)"><i class="mdi mdi-library-plus"></i> Добавить</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Фамилия
+        </th>
+
+        <th>
+            Имя
+        </th>
+
+        <th>
+            Отчество
+        </th>
+        <th>
+            Дескриптор
+        </th>
+        <th>
+            Должность
+        </th>
+
+        <th>
+            Организация
+        </th>
+
+        <th>
+            Телефон
+        </th>
+
+        <th>
+            Созд./Изм.
+        </th>
+
+        <th>
+            Дата создания
+        </th>
+        <th>
+            Подписант
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MidleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autorize.ToList().FirstOrDefault().Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doljnost.Naimenovanie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModific)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModific)
+            </td>
+            @if (item.Podpisant == 1)
+            {
+                <td>
+                    ДА
+                </td>
+            }
+            else
+            {
+                <td>
+                </td>
+            }
+            <td>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="UsersEdit(@item.IdUserrs)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteUsers(@item.IdUserrs)"> <i class="mdi mdi-delete"></i>Удалить</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModal').modal('hide');
+        }
+    });
+</script>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModalDelete').modal('hide');
+        }
+    });
+</script>

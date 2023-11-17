@@ -1,0 +1,85 @@
+﻿@*@model RecordOil.Models.Nefteproduct*@
+
+<div style="margin: 10px;">
+<table class="table" id="tabb">
+    <tr>
+        
+        <th style="text-align:center; width:150px;">
+            Месяц
+        </th>
+        <th style="width: 20px;">
+            &nbsp;
+        </th>
+        <th style="text-align: center; width: 150px;">
+            Вид нефтепродукта
+        </th>
+        <th style="width: 20px;">
+            &nbsp;
+        </th>
+        <th style="text-align: center; width: 150px;">
+            Масса
+        </th>
+        <th style="width: 20px;">
+            &nbsp;
+        </th>
+        <th style="text-align: center; width: 470px;">
+            Примечание
+        </th>        
+        
+    </tr>
+    @{
+        int u = 0;
+    }
+    @foreach(DateTime i in ViewBag.ListDat)
+    {
+        u++;
+        var p = i.ToString("Y");
+
+        <tr style="background-color:lightblue;">
+            <td colspan="7" style="width: 150px;" id="month_@u">
+
+                @Html.DisplayFor(modelItem => p)
+                
+            </td>
+        </tr>
+        foreach (var item in ViewBag.SpisNeft)
+        { 
+            u++;
+
+            <tr>
+                <td style="width: 150px;">
+                    <input type="hidden" readonly class="form-control btn-block" id="dateM_@u" value= @i.Date>
+                </td>
+                <td style="width: 20px;">
+                    &nbsp;
+                </td>
+                <td style="width: 150px;">
+                    <input type="text" readonly class="form-control btn-block" id="Neftprod_@u" value= @item>                   
+                </td>
+
+                <td style="width: 20px;">
+                    &nbsp;
+                </td>
+
+                <td style="width: 150px;">
+                    <input type="text" class="form-control btn-block" id="Massa_@u" />
+                </td>
+                <td style="width: 20px;">
+                    &nbsp;
+                </td>
+                
+                <td style="width: 470px;">
+                    <input type="text" class="form-control btn-block" id="PrimDog_@u" style="width:90%"/>
+                </td>
+                
+            </tr>
+        }
+    }
+</table>
+    </div>
+    <div class="modal-footer" style="text-align:center">
+        <hr>
+        
+        <button type="submit" class="btn btn-default" style="min-width:100px" onclick="DogovorSaveOk(0)">Сохранить</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+    </div>

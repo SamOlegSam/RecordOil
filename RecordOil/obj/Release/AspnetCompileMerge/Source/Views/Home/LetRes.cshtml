@@ -1,0 +1,161 @@
+﻿@model IEnumerable<RecordOil.Models.OstatSklad>
+@{
+
+    int u = 0;
+    
+}
+<table class="table" id="ListT">
+    @foreach (var skl in ViewBag.LS)
+    {
+        <tr>
+            <td colspan="12">
+                <label>@skl.Name</label>
+            </td>
+        </tr>
+
+        <tr>
+
+            <th>
+
+            </th>
+
+            <th>
+                &nbsp;
+            </th>
+
+            <th>
+                Нефтепродукт
+            </th>
+
+            <th> 
+                &nbsp;
+            </th>
+
+            <th>
+                Остаток,м<sup><small>3</small></sup>.
+            </th>
+            <th>
+                &nbsp;
+            </th>
+
+            <th>
+                Остаток, тонн
+            </th>
+            <th>
+                &nbsp;
+            </th>
+
+            <th>
+                Потребность,м<sup><small>3</small></sup>.
+</th>
+            <th>
+                &nbsp;
+            </th>
+
+            <th>
+                Потребность,тонн.
+            </th>
+
+            <th></th>
+        </tr>
+
+        foreach (var item in ViewBag.NEF)
+        {
+            u++;
+            decimal? ostatok = null;
+            decimal? ostatokT = null;
+
+            if (Model.Where(d => d.IdSkl == skl.IdSklad && d.IdNeftep == item.IdNeft).Count()==0)
+            
+            {
+                ostatok = null;
+                ostatokT = null;
+            }
+            else
+            {
+                ostatok = Model.Where(d => d.IdSkl == skl.IdSklad && d.IdNeftep == item.IdNeft).FirstOrDefault().Massa;
+                ostatokT = @Math.Round((ostatok * item.P), 3);
+            }
+
+            <tr>
+
+                <td>
+                    <input type="hidden" class="form-control btn-block" id="sk_@u" value="@skl.IdSklad" />
+
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="NeftProd_@u" style="width:150px;" value="@item.Naimenovanie" />
+                </td>
+
+                <td>
+                    <input type="hidden" readonly class="form-control btn-block" id="NeftP_@u" style="width:150px;" value="@item.P" />
+                </td>
+
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="Ostst_@u" style="width:150px;" value="@Math.Round(Convert.ToDouble(ostatok), 0)" />
+                </td>
+
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="OststT_@u" style="width:150px;" value="@Math.Round(Convert.ToDouble(ostatokT), 0)" />
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+                @if (item.PriznakIsp == 1)
+                {
+                    <td>
+                        <input type="text" class="form-control btn-block" id="MassaPlan_@u" style="width:150px;" onkeyup="this.value = this.value.replace(/[^(0-9)()]/,'');"/>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <input type="text" readonly class="form-control btn-block" id="MassaPlan_@u" style="width:150px;" />
+                    </td>
+                }
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+
+                <td>
+                    <input type="text" readonly class="form-control btn-block" id="MassaPlanT_@u" style="width:150px;" />
+                </td>
+            </tr>
+
+        }
+
+
+    }
+</table>
+<hr>
+
+
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="ZaySave(0)">Записать заявку</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+<hr>
+
+<script>
+    $(function d() {
+        ListT.addEventListener('change', function (e) {
+            var pref = e.target.id.substring(10);
+            var Massa_ = $('#MassaPlan_' + pref).val();
+            var P_ = $('#NeftP_' + pref).val().replace(',','.');
+            var MassaT_ = Massa_ * P_;
+            console.log("Massa_ = " + Massa_);
+            console.log("P_ = " + P_);
+            console.log("Massa_*5 = " + Massa_*5);
+            console.log("P_*5 = " + P_*5);
+            $('#MassaPlanT_' + pref).val(MassaT_.toFixed(0));
+        })
+            })
+</script>

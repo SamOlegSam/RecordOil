@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище RecordOilModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Autorize">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Dogovory">
+    <Key>
+      <PropertyRef Name="IdDog" />
+    </Key>
+    <Property Name="IdDog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberDog" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateDog" Type="datetime" />
+    <Property Name="IdOrg" Type="int" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Doljnost">
+    <Key>
+      <PropertyRef Name="IdDolj" />
+    </Key>
+    <Property Name="IdDolj" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naimenovanie" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MassDostTotal">
+    <Key>
+      <PropertyRef Name="IdT" />
+    </Key>
+    <Property Name="IdT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="IdNeft" Type="int" />
+    <Property Name="IdZayTotal" Type="int" />
+  </EntityType>
+  <EntityType Name="Nefteproduct">
+    <Key>
+      <PropertyRef Name="IdNeft" />
+    </Key>
+    <Property Name="IdNeft" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" />
+    <Property Name="P" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriznakIsp" Type="int" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="IdOrg" />
+    </Key>
+    <Property Name="IdOrg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Priznak" Type="int" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Prefix" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OstatkiDelete">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sklad" Type="int" />
+    <Property Name="Nefteprod" Type="int" />
+    <Property Name="V" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="DateSozd" Type="datetime" />
+    <Property Name="UserSozd" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateDelete" Type="datetime" />
+    <Property Name="UserDelete" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OstatkiFilial">
+    <Key>
+      <PropertyRef Name="IdOstFil" />
+    </Key>
+    <Property Name="IdOstFil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="IdRez" Type="int" />
+    <Property Name="IdNeftep" Type="int" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="IdOrg" Type="int" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OstatSklad">
+    <Key>
+      <PropertyRef Name="IdOstSklad" />
+    </Key>
+    <Property Name="IdOstSklad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="IdNeftep" Type="int" />
+    <Property Name="IdSkl" Type="int" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rezervuary">
+    <Key>
+      <PropertyRef Name="IdRez" />
+    </Key>
+    <Property Name="IdRez" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vpolezn" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Vitog" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="idSklad" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="IdR" />
+    </Key>
+    <Property Name="IdR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sklad">
+    <Key>
+      <PropertyRef Name="IdSklad" />
+    </Key>
+    <Property Name="IdSklad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdOrg" Type="int" />
+    <Property Name="UserModif" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModif" Type="datetime" />
+    <Property Name="Primechanie" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TableDog">
+    <Key>
+      <PropertyRef Name="IdTD" />
+    </Key>
+    <Property Name="IdTD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateMonth" Type="datetime" />
+    <Property Name="IdDog" Type="int" />
+    <Property Name="IdNeft" Type="int" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TableZay">
+    <Key>
+      <PropertyRef Name="IdTable" />
+    </Key>
+    <Property Name="IdTable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdNeftep" Type="int" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PlanJob" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prim" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="IdZay" Type="int" />
+    <Property Name="IdSklad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableZayDelete">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDNeft" Type="int" />
+    <Property Name="Massa" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="IdSklad" Type="int" />
+    <Property Name="IdZay" Type="int" />
+  </EntityType>
+  <EntityType Name="TableZayTotal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idZayTotal" Type="int" Nullable="false" />
+    <Property Name="idFilial" Type="int" />
+    <Property Name="idNeft" Type="int" />
+    <Property Name="Potrebnost" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Oststok" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="DostavkaFact" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="NalichSkladHran" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PlanV" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="IdUR" />
+    </Key>
+    <Property Name="IdUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="idRole" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="IdUserrs" />
+    </Key>
+    <Property Name="IdUserrs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MidleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="idFil" Type="int" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="idDolj" Type="int" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Podpisant" Type="int" />
+  </EntityType>
+  <EntityType Name="Zayavka">
+    <Key>
+      <PropertyRef Name="IdZay" />
+    </Key>
+    <Property Name="IdZay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateZay" Type="datetime" />
+    <Property Name="DatePlan" Type="datetime" />
+    <Property Name="IdOrg" Type="int" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Priznak" Type="int" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdSk" Type="int" />
+    <Property Name="UserSoglas" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateSoglas" Type="datetime" />
+    <Property Name="NumberSch" Type="int" />
+  </EntityType>
+  <EntityType Name="ZayavkaDelete">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Filial" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Number" Type="int" />
+    <Property Name="PlanDate" Type="datetime" />
+    <Property Name="DateSozd" Type="datetime" />
+    <Property Name="UserSozd" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateDelete" Type="datetime" />
+    <Property Name="UserDelete" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ZayTotal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberTotal" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateZayTotal" Type="datetime" />
+    <Property Name="DatePlanTotal" Type="datetime" />
+    <Property Name="UserModific" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModific" Type="datetime" />
+    <Property Name="Primech" Type="nvarchar" MaxLength="50" />
+    <Property Name="NumberTotalInt" Type="int" />
+  </EntityType>
+  <Association Name="FK_Autorize_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Autorize" Type="Self.Autorize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdUserrs" />
+      </Principal>
+      <Dependent Role="Autorize">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dogovory_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="Dogovory" Type="Self.Dogovory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="IdOrg" />
+      </Principal>
+      <Dependent Role="Dogovory">
+        <PropertyRef Name="IdOrg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MassDostTotal_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="MassDostTotal" Type="Self.MassDostTotal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="MassDostTotal">
+        <PropertyRef Name="IdNeft" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MassDostTotal_ZayTotal">
+    <End Role="ZayTotal" Type="Self.ZayTotal" Multiplicity="0..1" />
+    <End Role="MassDostTotal" Type="Self.MassDostTotal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZayTotal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MassDostTotal">
+        <PropertyRef Name="IdZayTotal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatkiDelete_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="OstatkiDelete" Type="Self.OstatkiDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="OstatkiDelete">
+        <PropertyRef Name="Nefteprod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatkiDelete_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="0..1" />
+    <End Role="OstatkiDelete" Type="Self.OstatkiDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="OstatkiDelete">
+        <PropertyRef Name="Sklad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatkiFilial_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="OstatkiFilial" Type="Self.OstatkiFilial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="OstatkiFilial">
+        <PropertyRef Name="IdNeftep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatkiFilial_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="OstatkiFilial" Type="Self.OstatkiFilial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="IdOrg" />
+      </Principal>
+      <Dependent Role="OstatkiFilial">
+        <PropertyRef Name="IdOrg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatkiFilial_Rezervuary">
+    <End Role="Rezervuary" Type="Self.Rezervuary" Multiplicity="0..1" />
+    <End Role="OstatkiFilial" Type="Self.OstatkiFilial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervuary">
+        <PropertyRef Name="IdRez" />
+      </Principal>
+      <Dependent Role="OstatkiFilial">
+        <PropertyRef Name="IdRez" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatSklad_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="OstatSklad" Type="Self.OstatSklad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="OstatSklad">
+        <PropertyRef Name="IdNeftep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OstatSklad_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="0..1" />
+    <End Role="OstatSklad" Type="Self.OstatSklad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="OstatSklad">
+        <PropertyRef Name="IdSkl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervuary_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="0..1" />
+    <End Role="Rezervuary" Type="Self.Rezervuary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="Rezervuary">
+        <PropertyRef Name="idSklad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sklad_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="IdOrg" />
+      </Principal>
+      <Dependent Role="Sklad">
+        <PropertyRef Name="IdOrg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDog_Dogovory">
+    <End Role="Dogovory" Type="Self.Dogovory" Multiplicity="0..1" />
+    <End Role="TableDog" Type="Self.TableDog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dogovory">
+        <PropertyRef Name="IdDog" />
+      </Principal>
+      <Dependent Role="TableDog">
+        <PropertyRef Name="IdDog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDog_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="TableDog" Type="Self.TableDog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="TableDog">
+        <PropertyRef Name="IdNeft" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZay_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="TableZay" Type="Self.TableZay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="TableZay">
+        <PropertyRef Name="IdNeftep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZay_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="1" />
+    <End Role="TableZay" Type="Self.TableZay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="TableZay">
+        <PropertyRef Name="IdSklad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZay_Sklad1">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="1" />
+    <End Role="TableZay" Type="Self.TableZay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="TableZay">
+        <PropertyRef Name="IdSklad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZay_Zayavka">
+    <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="0..1" />
+    <End Role="TableZay" Type="Self.TableZay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zayavka">
+        <PropertyRef Name="IdZay" />
+      </Principal>
+      <Dependent Role="TableZay">
+        <PropertyRef Name="IdZay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayDelete_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="TableZayDelete" Type="Self.TableZayDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="TableZayDelete">
+        <PropertyRef Name="IDNeft" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayDelete_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="0..1" />
+    <End Role="TableZayDelete" Type="Self.TableZayDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="TableZayDelete">
+        <PropertyRef Name="IdSklad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayDelete_ZayavkaDelete">
+    <End Role="ZayavkaDelete" Type="Self.ZayavkaDelete" Multiplicity="0..1" />
+    <End Role="TableZayDelete" Type="Self.TableZayDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZayavkaDelete">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TableZayDelete">
+        <PropertyRef Name="IdZay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayTotal_Nefteproduct">
+    <End Role="Nefteproduct" Type="Self.Nefteproduct" Multiplicity="0..1" />
+    <End Role="TableZayTotal" Type="Self.TableZayTotal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nefteproduct">
+        <PropertyRef Name="IdNeft" />
+      </Principal>
+      <Dependent Role="TableZayTotal">
+        <PropertyRef Name="idNeft" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayTotal_Sklad">
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="0..1" />
+    <End Role="TableZayTotal" Type="Self.TableZayTotal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sklad">
+        <PropertyRef Name="IdSklad" />
+      </Principal>
+      <Dependent Role="TableZayTotal">
+        <PropertyRef Name="idFilial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableZayTotal_ZayTotal">
+    <End Role="ZayTotal" Type="Self.ZayTotal" Multiplicity="1" />
+    <End Role="TableZayTotal" Type="Self.TableZayTotal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZayTotal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableZayTotal">
+        <PropertyRef Name="idZayTotal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Autorize">
+    <End Role="Autorize" Type="Self.Autorize" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autorize">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="IdR" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Doljnost">
+    <End Role="Doljnost" Type="Self.Doljnost" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doljnost">
+        <PropertyRef Name="IdDolj" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="idDolj" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="IdOrg" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="idFil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZayavkaDelete_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="ZayavkaDelete" Type="Self.ZayavkaDelete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="IdOrg" />
+      </Principal>
+      <Dependent Role="ZayavkaDelete">
+        <PropertyRef Name="Filial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Хранилище RecordOilModelContainer">
+    <EntitySet Name="Autorize" EntityType="Self.Autorize" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dogovory" EntityType="Self.Dogovory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doljnost" EntityType="Self.Doljnost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MassDostTotal" EntityType="Self.MassDostTotal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nefteproduct" EntityType="Self.Nefteproduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OstatkiDelete" EntityType="Self.OstatkiDelete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OstatkiFilial" EntityType="Self.OstatkiFilial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OstatSklad" EntityType="Self.OstatSklad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rezervuary" EntityType="Self.Rezervuary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sklad" EntityType="Self.Sklad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableDog" EntityType="Self.TableDog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableZay" EntityType="Self.TableZay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableZayDelete" EntityType="Self.TableZayDelete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableZayTotal" EntityType="Self.TableZayTotal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zayavka" EntityType="Self.Zayavka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZayavkaDelete" EntityType="Self.ZayavkaDelete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZayTotal" EntityType="Self.ZayTotal" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Autorize_Users" Association="Self.FK_Autorize_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Autorize" EntitySet="Autorize" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dogovory_Organization" Association="Self.FK_Dogovory_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="Dogovory" EntitySet="Dogovory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MassDostTotal_Nefteproduct" Association="Self.FK_MassDostTotal_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="MassDostTotal" EntitySet="MassDostTotal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MassDostTotal_ZayTotal" Association="Self.FK_MassDostTotal_ZayTotal">
+      <End Role="ZayTotal" EntitySet="ZayTotal" />
+      <End Role="MassDostTotal" EntitySet="MassDostTotal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatkiDelete_Nefteproduct" Association="Self.FK_OstatkiDelete_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="OstatkiDelete" EntitySet="OstatkiDelete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatkiDelete_Sklad" Association="Self.FK_OstatkiDelete_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="OstatkiDelete" EntitySet="OstatkiDelete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatkiFilial_Nefteproduct" Association="Self.FK_OstatkiFilial_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="OstatkiFilial" EntitySet="OstatkiFilial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatkiFilial_Organization" Association="Self.FK_OstatkiFilial_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OstatkiFilial" EntitySet="OstatkiFilial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatkiFilial_Rezervuary" Association="Self.FK_OstatkiFilial_Rezervuary">
+      <End Role="Rezervuary" EntitySet="Rezervuary" />
+      <End Role="OstatkiFilial" EntitySet="OstatkiFilial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatSklad_Nefteproduct" Association="Self.FK_OstatSklad_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="OstatSklad" EntitySet="OstatSklad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OstatSklad_Sklad" Association="Self.FK_OstatSklad_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="OstatSklad" EntitySet="OstatSklad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervuary_Sklad" Association="Self.FK_Rezervuary_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="Rezervuary" EntitySet="Rezervuary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sklad_Organization" Association="Self.FK_Sklad_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="Sklad" EntitySet="Sklad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDog_Dogovory" Association="Self.FK_TableDog_Dogovory">
+      <End Role="Dogovory" EntitySet="Dogovory" />
+      <End Role="TableDog" EntitySet="TableDog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDog_Nefteproduct" Association="Self.FK_TableDog_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="TableDog" EntitySet="TableDog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZay_Nefteproduct" Association="Self.FK_TableZay_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="TableZay" EntitySet="TableZay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZay_Sklad" Association="Self.FK_TableZay_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="TableZay" EntitySet="TableZay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZay_Sklad1" Association="Self.FK_TableZay_Sklad1">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="TableZay" EntitySet="TableZay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZay_Zayavka" Association="Self.FK_TableZay_Zayavka">
+      <End Role="Zayavka" EntitySet="Zayavka" />
+      <End Role="TableZay" EntitySet="TableZay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayDelete_Nefteproduct" Association="Self.FK_TableZayDelete_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="TableZayDelete" EntitySet="TableZayDelete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayDelete_Sklad" Association="Self.FK_TableZayDelete_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="TableZayDelete" EntitySet="TableZayDelete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayDelete_ZayavkaDelete" Association="Self.FK_TableZayDelete_ZayavkaDelete">
+      <End Role="ZayavkaDelete" EntitySet="ZayavkaDelete" />
+      <End Role="TableZayDelete" EntitySet="TableZayDelete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayTotal_Nefteproduct" Association="Self.FK_TableZayTotal_Nefteproduct">
+      <End Role="Nefteproduct" EntitySet="Nefteproduct" />
+      <End Role="TableZayTotal" EntitySet="TableZayTotal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayTotal_Sklad" Association="Self.FK_TableZayTotal_Sklad">
+      <End Role="Sklad" EntitySet="Sklad" />
+      <End Role="TableZayTotal" EntitySet="TableZayTotal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableZayTotal_ZayTotal" Association="Self.FK_TableZayTotal_ZayTotal">
+      <End Role="ZayTotal" EntitySet="ZayTotal" />
+      <End Role="TableZayTotal" EntitySet="TableZayTotal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Autorize" Association="Self.FK_UserRoles_Autorize">
+      <End Role="Autorize" EntitySet="Autorize" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Doljnost" Association="Self.FK_Users_Doljnost">
+      <End Role="Doljnost" EntitySet="Doljnost" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Organization" Association="Self.FK_Users_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZayavkaDelete_Organization" Association="Self.FK_ZayavkaDelete_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="ZayavkaDelete" EntitySet="ZayavkaDelete" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

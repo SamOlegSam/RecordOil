@@ -1,0 +1,373 @@
+﻿@model IEnumerable<RecordOil.Models.Zayavka>
+
+<style>
+    .loader {
+        overflow: hidden;
+        font-size: 5px;
+        margin: 50px auto;
+        text-indent: -9999em;
+        width: 11em;
+        height: 11em;
+        border-radius: 50%;
+        background: #4682B4;
+        background: -moz-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -webkit-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -o-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: -ms-linear-gradient(left, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        background: linear-gradient(to right, #4682B4 10%, rgba(101,171,248, 0) 42%);
+        position: relative;
+        -webkit-animation: load3 1.4s infinite linear;
+        animation: load3 1.4s infinite linear;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+        .loader:before {
+            width: 50%;
+            height: 50%;
+            background: #4682B4;
+            border-radius: 100% 0 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+        }
+
+        .loader:after {
+            background: white;
+            width: 75%;
+            height: 75%;
+            border-radius: 50%;
+            content: '';
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+    @@-webkit-keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<div id="ServicesModal" class="modal fade" style="margin-left:auto; margin-right:auto;">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModalDelete" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id='ServicesModalDeleteContent'>
+
+        </div>
+    </div>
+</div>
+
+<div id="ServicesModal1" class="modal fade" style="margin-left:auto; margin-right:auto;">
+    <div class="modal-dialog">
+        <div class="modal-content" id='ServicesModalContent1' style="width:1200px; margin-left:-200px;">
+
+        </div>
+    </div>
+</div>
+
+
+<style type="text/css">
+    TH {
+        background: #EFF5FB; /* Цвет фона */
+        border-bottom: double;
+    }
+
+    tr:nth-child(odd) {
+        background: #EFF5FB; /* Цвет фона */
+    }
+
+    tr:nth-child(even) {
+        background: #ffffff; /* Цвет фона */
+    }
+</style>
+
+<h3>Заявки АУ</h3>
+
+<input type="hidden" class="form-control btn-block" id="IDF" value="14" />
+<table>
+    <tr style="background-color:transparent;">
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td colspan="7" align="center">
+            <b>Дата заявки</b>
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td colspan="7" align="center">
+            <b>Плановый месяц</b>
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+    <tr style="background-color:transparent;">
+        <td>
+            <button type="button" class="btn btn-gradient waves-light waves-light btn-info" onclick="AddZay(0)">Добавить заявку</button>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            с
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <input type="date" class="form-control btn-block" id="SZ" style="width:150px;" />
+            <script>
+                window.addEventListener('load',
+                    function (e) {
+                        var d = new Date();
+                        var day = d.getDate(); if (day < 10) day = '0' + day;
+                        var month = d.getMonth() + 1; if (month < 10) month = '0' + month;
+                        var year = d.getFullYear();
+                        document.getElementById("SZ").value = year + "-" + month + "-" + "01";
+                    }, false);
+            </script>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            по
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <input type="date" class="form-control btn-block" id="PoZ" style="width:150px;" />
+            <script>
+                var d = new Date();
+                var day = d.getDate(); if (day < 10) day = '0' + day;
+                var month = d.getMonth() + 1; if (month < 10) month = '0' + month;
+                var year = d.getFullYear();
+                document.getElementById("PoZ").value = year + "-" + month + "-" + day;
+            </script>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            с
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <input type="month" class="form-control btn-block" id="SZM" style="width:150px;" />
+            <script>
+                var D = new Date();
+                D.setMonth(D.getMonth() + 1);
+                var month = D.getMonth() ; if (month < 10) month = '0' + month;
+                var year = D.getFullYear();
+                document.getElementById("SZM").value = year + "-" + month;
+
+            </script>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            по
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <input type="month" class="form-control btn-block" id="PoZM" style="width:150px;" />
+            <script>
+                var D = new Date();
+                D.setMonth(D.getMonth() + 1);
+                var month = D.getMonth() ; if (month < 10) month = '0' + month;
+                var year = D.getFullYear();
+                document.getElementById("PoZM").value = year + "-" + month;
+
+            </script>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <button type="button" class="btn btn-gradient waves-light waves-light btn-info" onclick="GetZayTab(IDF)">Вывести</button>
+        </td>
+        <td>
+            &nbsp; &nbsp;
+        </td>
+        <td>
+            <button type="button" class="btn btn-gradient waves-light waves-light btn-info" onclick="PrintZayList(IDF)">Отчёт(.docx)</button>
+        </td>
+    </tr>
+</table>
+<p></p>
+
+<center>
+    <div class="loader" id="loadImgZ" style="display:none;">
+    </div>
+</center>
+
+<div id="TableZay">
+    <table class="table">
+        <tr>
+            @*<th>
+                    Дата заявки
+                </th>*@
+
+            <th>
+                Филиал
+            </th>
+
+            <th>
+                Дата
+            </th>
+
+            <th>
+                Номер
+            </th>
+
+            <th>
+                Плановый месяц
+            </th>
+
+            <th>
+                Созд./Изм.
+            </th>
+
+            <th>
+                Дата создания
+            </th>
+
+            <th>
+                Согласование
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td id="DateZay" style="">
+                    @Html.DisplayFor(modelItem => item.Organization.Name)
+                </td>
+                <td id="Organization">
+
+                    @Convert.ToDateTime(item.DateZay).ToString("d")
+                </td>
+
+                <td id="Organization">
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+
+                <td id="Organization">
+                    <input type="text" readonly class="form-control btn-block" id="DateP" style="width:150px;" value="@item.DatePlan.ToString("Y")" />
+                </td>
+
+                <td id="UserModific">
+                    @Html.DisplayFor(modelItem => item.UserModific)
+                </td>
+
+                <td id="DateModofic">
+                    @Convert.ToDateTime(item.DateModific).ToString("d")
+                </td>
+
+                <td id="Soglasovanie">
+                    @if (item.DateSoglas != null)
+                    {
+                        <center>@Convert.ToDateTime(item.DateSoglas).ToString("d")</center>
+                    }
+                    else
+                    {}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="ZayavkaEdit(@item.IdZay)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+                    <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteZayavka(@item.IdZay)"> <i class="mdi mdi-delete"></i>Удалить</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    window.addEventListener('load',
+        function (e) {
+            document.getElementById("SZ").max = document.getElementById("PoZ").value;
+            document.getElementById("PoZ").min = document.getElementById("SZ").value;
+        }, false);
+
+    window.addEventListener('change',
+        function (e) {
+            document.getElementById("SZ").max = document.getElementById("PoZ").value;
+            document.getElementById("PoZ").min = document.getElementById("SZ").value;
+        }, false);
+</script>
+
+<script>
+    window.addEventListener('load',
+        function (e) {
+            document.getElementById("SZM").max = document.getElementById("PoZM").value;
+            document.getElementById("PoZM").min = document.getElementById("SZM").value;
+        }, false);
+
+    window.addEventListener('change',
+        function (e) {
+            document.getElementById("SZM").max = document.getElementById("PoZM").value;
+            document.getElementById("PoZM").min = document.getElementById("SZM").value;
+        }, false);
+</script>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.code == 'Escape') {
+            $('#ServicesModal1').modal('hide');
+        }
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RecordOil.Models.OstatSklad>
+
+<table class="table">
+    <tr>
+        <th>
+            Дата
+        </th>
+
+        <th>
+            Склад
+        </th>
+
+        <th>
+            Нефтепродукт
+        </th>
+
+        <th>
+            Объем, м<sup><small>3</small></sup>
+        </th>
+
+        <th>
+            Дата ввода
+        </th>
+
+        <th>
+            Поьзователь
+        </th>
+
+        <th>
+            Дата создания
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Convert.ToDateTime(item.Date).ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sklad.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nefteproduct.Naimenovanie)
+            </td>
+            <td>
+                @Math.Round(Convert.ToDouble(item.Massa),0)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.Date).ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModific)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DateModific).ToString("d")
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="OstatkiEdit(@item.IdOstSklad)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+                <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteOstatki(@item.IdOstSklad)"> <i class="mdi mdi-delete"></i>Удалить</button>
+            </td>
+        </tr>
+    }
+
+</table>

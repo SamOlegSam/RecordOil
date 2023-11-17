@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RecordOil.Models.ZayTotal>
+
+<table class="table">
+    <tr>
+        <th>
+            Дата
+        </th>
+        <th>
+            Номер
+        </th>
+        <th>
+            Плановый месяц
+        </th>
+        <th>
+            Пользователь
+        </th>
+        <th>
+            Дата создания
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string podpis = "";
+        if (item.Primech == null)
+        {
+            podpis = "Не подписана";
+        }
+        else
+        {
+            podpis = "Подписана";
+        }
+<tr>
+
+    <td id="DateZayTotal">
+
+        @Html.DisplayFor(modelItem => item.DateZayTotal)
+    </td>
+
+    <td id="NumberTotal">
+        @Html.DisplayFor(modelItem => item.NumberTotal)
+    </td>
+
+    <td id="DatePlanTotaln">
+        <input type="text" readonly class="form-control btn-block" id="DateP" style="width:150px;" value="@Convert.ToDateTime(item.DatePlanTotal).ToString("Y")" />
+    </td>
+
+    <td id="UserModific">
+        @Html.DisplayFor(modelItem => item.UserModific)
+    </td>
+
+    <td id="DateModofic">
+        @Html.DisplayFor(modelItem => item.DateModific)
+    </td>
+    <td>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-info" onclick="ZayavkaTotalEdit(@item.id)"> <i class="mdi mdi-settings"></i>Редактировать</button>
+        <button type="button" class="btn btn-icon waves-effect waves-light btn-danger" onclick="DeleteZayavkaTotal(@item.id)"> <i class="mdi mdi-delete"></i>Удалить</button>
+    </td>
+    <td id="Podpis">
+        @podpis
+    </td>
+</tr>
+    }
+
+</table>
+

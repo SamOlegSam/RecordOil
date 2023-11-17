@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Users
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование пользователя</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdUserrs" />
+
+    <label>Фамилия</label>
+    <input type="text" class="form-control btn-block" id="LastNameEdit" value="@Model.LastName" />
+
+    <label>Имя</label>
+    <input type="text" class="form-control btn-block" id="FirstNameEdit" value="@Model.FirstName" />
+
+    <label>Отчество</label>
+    <input type="text" class="form-control btn-block" id="MiddleNameEdit" value="@Model.MidleName" />
+
+    <label>Должность</label>
+    @*@Html.DropDownList("Name", ViewBag.DoljUsED as SelectList, "Выберите должность", new { @class = "form-control btn-block", id = "idDoljEdit" })*@
+    <select class="form-control btn-block" contenteditable="true" id="idDoljEdit">
+
+        @foreach (var dol in ViewBag.DoljUsED)
+        {
+            if (dol.IdDolj == @Model.idDolj)
+            {
+                <option value="@dol.IdDolj" selected> @dol.Naimenovanie</option>
+            }
+            else
+            {
+                <option value="@dol.IdDolj"> @dol.Naimenovanie</option>
+            }
+        }
+    </select>
+
+    @*<label>Филиал</label>
+
+        <select class="form-control btn-block" contenteditable="true" id="idFilEdit">
+
+            @foreach (var fil in ViewBag.FilUsED)
+            {
+                if (fil.IdOrg == @Model.idFil)
+                {
+                    <option value="@fil.IdOrg" selected> @fil.Name</option>
+                }
+                else
+                {
+                    <option value="@fil.IdOrg"> @fil.Name</option>
+                }
+            }
+        </select>*@
+    <input type="hidden" class="form-control btn-block" id="idFilEdit" value="@Model.idFil" />
+
+    <label>Телефон</label>
+    <input type="text" class="form-control btn-block" id="PhoneUE" value="@Model.Phone" />
+    <hr>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Kireev"))
+        {
+            
+<table>
+    @if (Model.Podpisant == 1)
+    {
+        <tr style="background-color:white">
+            <td>
+                <input type="checkbox" id="rules" class="checkbox" checked>
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                <label> Лицо ответственное за согласование заявки</label>
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr style="background-color:white">
+            <td>
+                <input type="checkbox" id="rules" class="checkbox">
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                <label> Лицо ответственное за согласование заявки</label>
+            </td>
+        </tr>
+    }
+</table>
+
+        }
+    }
+    
+    <input type="hidden" class="form-control btn-block" id="UserUsEdit" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateUsEdit" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="UsersEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
+

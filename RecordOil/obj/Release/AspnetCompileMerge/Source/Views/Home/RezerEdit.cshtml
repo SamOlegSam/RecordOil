@@ -1,0 +1,37 @@
+﻿@model RecordOil.Models.Rezervuary
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование резервуара</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdRez" />
+
+    <label>Наименование</label>
+    <input type="text" class="form-control btn-block" id="NaimenovanieEdit" value="@Model.Naimenovanie" />
+
+    <label>Объем полезный</label>
+    <input type="text" class="form-control btn-block" id="VPolEdit" value="@Model.Vpolezn" />
+
+    <label>Объем итоговый</label>
+    <input type="text" class="form-control btn-block" id="VItogEdit" value="@Model.Vitog" />
+        
+    <label>Филиал</label>
+    @Html.DropDownList("Name", ViewBag.FilRezED as SelectList, "Выберите филиал", new { @class = "form-control btn-block", id = "idFilEdit" })
+
+    <input type="hidden" class="form-control btn-block" id="UserRezEdit" value="@System.Security.Principal.WindowsIdentity.GetCurrent().Name.Trim()" />
+    <input type="hidden" class="form-control btn-block" id="DateRezEdit" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-info" style="min-width:100px" onclick="RezerEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
+
+

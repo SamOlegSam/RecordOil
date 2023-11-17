@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
+@model RecordOil.Models.Organization
+
+<div class="modal-header" style="text-align: center; background-color: #D0EDFE; border-radius:5px;">
+    <h5><b> Редактирование организации</b></h5>
+</div>
+<div class="modal-body">
+
+    @*<label>ID записи</label>*@
+    <input type="hidden" class="form-control btn-block" id="ID" value="@Model.IdOrg" />
+
+    <label>Наименование</label>
+    <input type="text" class="form-control btn-block" id="NaimenovanieOrgEdit" value="@Model.Name" />
+
+    <label>Признак</label>
+    <select id="PriznakOrgEdit" class="form-control btn-block">
+        <option value="1">Филиал</option>
+        <option value="2">Сторонняя организация</option>
+        <option value="3">Что-то</option>
+    </select>
+    
+    <label>Префикс</label>
+    <input type="text" class="form-control btn-block" id="PrefixEdit" value="@Model.Prefix" />
+
+    <input type="hidden" class="form-control btn-block" id="UserOrgEdit" value="@User.Identity.GetUserName()" />
+    <input type="hidden" class="form-control btn-block" id="DateOrgEdit" value="@DateTime.Now" />
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="submit" class="btn btn-default" style="min-width:100px" onclick="OrganizEditSave(0)">Сохранить</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal" style="min-width:100px">Отмена</button>
+</div>
+
+
+
+
+
+
